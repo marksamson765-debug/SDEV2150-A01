@@ -23,9 +23,9 @@ const btnClear = document.querySelector('#btn-clear');
 // TODO: Create a constant named course
 const course = 'SDEV2150';
 // TODO: Create a variable named topic
-const topic = 'JS Review'
+const topic = 'JS Review';
 // TODO: Use a template string to display both values
-output.innerHTML = `<p>Course: ${course} | Topic: ${topic}</p>`
+output.innerHTML = `<p>Course: ${course} | Topic: ${topic}</p>`;
 // --------------------------------------------------
 // STEP 3: Functions and return values
 // --------------------------------------------------
@@ -35,13 +35,13 @@ output.innerHTML = `<p>Course: ${course} | Topic: ${topic}</p>`
 // TODO: Create a function add(a, b)
 function add(a, b) {
     return a + b;
-}
+};
 // TODO: Create an arrow function formatResult(label, value)
 const formatResult = (label, value) => {
     return `${label}: ${value}`;
-}
+};
 // TODO: Call the functions and display the result
-output.innerHTML += `<p>${formatResult}('2 + 3', add(2,3 ))})</p>`
+output.innerHTML += `<p>${formatResult('2 + 3', add(2, 3 ))}</p>`;
 // --------------------------------------------------
 // STEP 4: Arrays, objects, and iteration
 // --------------------------------------------------
@@ -50,24 +50,43 @@ output.innerHTML += `<p>${formatResult}('2 + 3', add(2,3 ))})</p>`
 
 // TODO: Create an array named tasks
 // Each task should have: title (string), done (boolean)
-
+const tasks = [ 
+{ title: 'Install Dependencies', done: true },
+{ title: 'Run dev server', done: true },
+{ title: 'Complete the demo', done: true },
+];
 // TODO: Use a loop to count completed tasks
-
+let completedCount = 0;
+for (const task of tasks) {
+    if (task.done) {
+        completedCount ++;
+    }
+};
 // TODO: Display: "Completed: X of Y"
-
+output.textContent = `Completed: ${completedCount} of ${tasks.length}`;
 // --------------------------------------------------
 // STEP 5: Problem solving – build HTML from data
 // --------------------------------------------------
 // Build a function that converts the tasks array
 // into an HTML list using a loop.
-
 // TODO: Create a function renderTaskList(items)
-// - Start with '<ul>'
-// - Loop over items
-// - Add <li> elements with a class of 'done' or 'todo'
-// - Close the list and return the string
+function renderTaskList(items) {
+    // - Start with '<ul>'
+    let html = '<ul>';
+    // - Loop over items
+    for (const item of items) {
+        // - Add <li> elements with a class of 'done' or 'todo'
+        const status = item.done ? 'done' : 'todo';
+        html += `<li class="${status}">${item.title}</li>`;
+    }
+    // - Close the list and return the string
+    html += '</ul>';
+    return html;
+};
 
 // TODO: Render the task list inside the list container
+list.innerHTML = renderTaskList(tasks);
+
 
 // --------------------------------------------------
 // STEP 6: DOM manipulation with createElement
@@ -75,39 +94,73 @@ output.innerHTML += `<p>${formatResult}('2 + 3', add(2,3 ))})</p>`
 // Create and append elements instead of using innerHTML.
 
 // TODO: Create a function addMessage(message)
-// - Create a <p> element
-// - Set its textContent
-// - Append it to the output element
+function addMessage(message) {
+    // - Create a <p> element
+    const p = document.createElement('p');
+    // - Set its textContent
+    p.textContent = message;
+    // - Append it to the output element
+    output.appendChild(p);
+};
 
 // TODO: Test the addMessage function
-
+addMessage('Testing addMessage');
 // --------------------------------------------------
 // STEP 7: Events – connect UI to behavior
 // --------------------------------------------------
 // Wire the buttons to functions that update the UI.
 
 // TODO: Create a function runDemo()
-// - Clear output
-// - Add a few messages
-// - Render the task list
+function runDemo() {
+    // - Clear output
+    output.innerHTML = '';
+    // - Add a few messages
+    addMessage('A new message from runDemo()');
+    // - Render the task list
+    list.innerHTML = renderTaskList(tasks);
+};
 
 // TODO: Create a function clearUI()
-// - Clear both output and todo list containers
+function clearUI() {
+    // - Clear both output and todo list containers
+    output.innerHTML = '';
+    list.innerHTML = '';
+};
+
 
 // TODO: Add click listeners for btnRun and btnClear
-
+btnRun.addEventListener('click', runDemo());
+btnClear.addEventListener('click', clearUI());
 // --------------------------------------------------
 // STEP 8: Mini extension – Adding tasks
 // --------------------------------------------------
+const txtTask = document.getElementById('txt-task');
+const btnAdd = document.getElementById('btn-add');
 
+btnAdd.addEventListener('click', () => {
+    const title = txtTask.value.trim();
+    if (!title) return;
+
+    tasks.push({ title, done: false });
+    list.innerHTML = renderTaskList(tasks);
+    txtTask.value = '';
+});
 // --------------------------------------------------
 // STEP 9: Student Exercise
 // --------------------------------------------------
 // Complete these AFTER the demo:
 
 // 1. Create a function toggleDone(title)
-//    - Find a task by title
-//    - Flip its done value (true/false)
+function toggleDone(title) {
+    //    - Find a task by title
+    tasks.forEach(() => {
+        if (title == txtTask)
+        //    - Flip its done value (true/false)
+        
+    });
+
+};
+toggleDone()
 
 // 2. Update renderTaskList() to show '(done)' or '(todo)'
 
