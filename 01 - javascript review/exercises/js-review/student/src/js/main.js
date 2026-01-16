@@ -165,14 +165,18 @@ function toggleDone(title) {
 // ??? what is this asking for
 
 // 3. Add event delegation to the <ul>
+const ul = document.querySelector('ul');
 //    - When a list item is clicked:
-list.addEventListener('click', (e) => {
-    //      * Toggle the task
-    toggleDone(e.target);
-    //      * Re-render the list
-    renderTaskList(tasks);
-
-})
+for (const child of ul.children) {
+    child.addEventListener('click', (e) => {
+        console.log(e);
+        //      * Toggle the task
+        toggleDone(e.target);
+        //      * Re-render the list
+        renderTaskList(tasks);
+    
+    })
+};
 
 // 4. Stretch goals:
 //    - Display a chekcbox next to each task to represent done/todo 
