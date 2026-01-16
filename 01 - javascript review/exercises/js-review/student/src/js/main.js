@@ -129,8 +129,8 @@ function clearUI() {
 
 
 // TODO: Add click listeners for btnRun and btnClear
-btnRun.addEventListener('click', runDemo());
-btnClear.addEventListener('click', clearUI());
+btnRun.addEventListener('click', runDemo);
+btnClear.addEventListener('click', clearUI);
 // --------------------------------------------------
 // STEP 8: Mini extension – Adding tasks
 // --------------------------------------------------
@@ -154,20 +154,25 @@ btnAdd.addEventListener('click', () => {
 function toggleDone(title) {
     //    - Find a task by title
     tasks.forEach(() => {
-        if (title == txtTask)
-        //    - Flip its done value (true/false)
-        
-    });
-
+        if (title === txtTask) {
+            //    - Flip its done value (true/false)
+            tasks.includes(title).done ? false : true;
+        }
+    })
 };
-toggleDone()
 
 // 2. Update renderTaskList() to show '(done)' or '(todo)'
+// ??? what is this asking for
 
 // 3. Add event delegation to the <ul>
 //    - When a list item is clicked:
-//      * Toggle the task
-//      * Re-render the list
+list.addEventListener('click', (e) => {
+    //      * Toggle the task
+    toggleDone(e.target);
+    //      * Re-render the list
+    renderTaskList(tasks);
+
+})
 
 // 4. Stretch goals:
 //    - Display a chekcbox next to each task to represent done/todo 
