@@ -1,6 +1,8 @@
-const template = document.querySelector('template');
+const template = document.createElement('template');
 template.innerHTML = 
 `
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
       <section class="col-12 col-lg-4">
         <div class="card h-100">
           <div class="card-header">
@@ -33,3 +35,13 @@ template.innerHTML =
         </div>
       </section>
 `;
+
+class ResourceDetails extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.appendChild(template.content.cloneNode(true))
+  }
+};
+
+customElements.define('resource-details', ResourceDetails);
