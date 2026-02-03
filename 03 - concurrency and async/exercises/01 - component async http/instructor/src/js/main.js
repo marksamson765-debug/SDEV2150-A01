@@ -55,9 +55,9 @@ import './components/resource-details.js';
 
 // TODO: Stage 1: After fetching from the API, pass the fetched resources into <resource-results>
 const resultsComponent = document.querySelector('resource-results');
-const response = await fetch("http://localhost:3000/resources");
-const data = await response.json()
-resultsComponent.results = data;
+// const response = await fetch("http://localhost:3000/resources");
+// const data = await response.json()
+// resultsComponent.results = data;
 
 // Filters emit state, main.js updates results and resets details
 const filtersComponent = document.querySelector('resource-filters');
