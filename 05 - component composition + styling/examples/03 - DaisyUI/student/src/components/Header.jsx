@@ -3,7 +3,7 @@ export default function Header({ tagline }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-2">
       <div>
-        {/*<button className="btn">Test Button</button>*/}
+        <button className="btn btn-warning">mmm yumby in my tumby</button>
         <h1 className="text-xl font-semibold text-sky-600">NAIT Resource Directory</h1>
         <p className="text-sm text-gray-500">
           {tagline ? tagline : 'Find student support services, labs, and campus resources.'}
