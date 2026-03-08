@@ -1,15 +1,17 @@
 // src/components/Results.jsx
 import ResultsItem from './ResultsItem';
+import Card from './ui/Card';
 import { resources } from '../data/resources';
 
 export default function Results() {
   return (
+  <Card title="Results">
     <section className="h-full mb-4">
       <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           <strong className="text-sm text-gray-900">Results</strong>
           <span className="rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
-            4
+            {resources.length}
           </span>
         </div>
 
@@ -33,5 +35,6 @@ export default function Results() {
         </ul>
       </div>
     </section>
+  </Card>
   );
 }

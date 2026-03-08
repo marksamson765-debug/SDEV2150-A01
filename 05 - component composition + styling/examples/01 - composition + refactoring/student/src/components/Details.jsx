@@ -1,6 +1,9 @@
 // src/components/Details.jsx
+import Card from './ui/Card';
+
 export default function Details() {
   return (
+  <Card>
     <section className="h-full">
       <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
         <div className="border-b border-gray-200 px-4 py-3">
@@ -44,5 +47,6 @@ export default function Details() {
         </div>
       </div>
     </section>
+  </Card>
   );
 }
