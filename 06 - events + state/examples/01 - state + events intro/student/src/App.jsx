@@ -6,7 +6,10 @@ import PageLayout from './components/layout/PageLayout';
 
 function App() {
   return (
+    // the new layout:
     <PageLayout header={<Header tagline="Find the right resources, right away" />}>
+    {/*each of these children inherit PageLayout.jsx's tailwind classes
+    "mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 py-6 md:grid-cols-3 md:gap-6"*/}
       <aside className="md:col-span-3 lg:col-span-1">
         <Filters />
       </aside>
@@ -17,6 +20,7 @@ function App() {
         <Details />
       </aside>
     </PageLayout>
+    // the old layout
     // <PageLayout
     //   header={<Header tagline="Find the right resources, right away" />}
     //   left={<Filters />}
