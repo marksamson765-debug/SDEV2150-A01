@@ -43,15 +43,20 @@ function App() {
         />
       </aside>
       <section className="md:col-span-2 lg:col-span-1">
-        <Results
-          resources={resources}
-          selectedResource={selectedResource}
-          onSelectResource={setSelectedResource}
-          searchTerm={searchTerm}
-          selectedCategories={selectedCategories}
-          openNowOnly={openNowOnly}
-          virtualOnly={virtualOnly}
-        />
+        {isLoading ? (
+          <div className="text-sm text-base-content/70">Loading resources...</div>
+        ) : (
+          <Results
+            resources={resources}
+            selectedResource={selectedResource}
+            onSelectResource={setSelectedResource}
+            searchTerm={searchTerm}
+            selectedCategories={selectedCategories}
+            openNowOnly={openNowOnly}
+            virtualOnly={virtualOnly}
+          />
+        )
+      }
       </section>
       <aside className="md:col-span-1 lg:col-span-1">
         {selectedResource ? (
