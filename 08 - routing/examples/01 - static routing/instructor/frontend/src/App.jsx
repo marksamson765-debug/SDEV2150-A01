@@ -10,7 +10,9 @@ function App() {
 
   return (
     <PageLayout header={<Header tagline="Find the right resources, right away" />}>
+      {/* almost like {children} but for routing: */}
       <Outlet />
+      }
     </PageLayout>
   );
 }
