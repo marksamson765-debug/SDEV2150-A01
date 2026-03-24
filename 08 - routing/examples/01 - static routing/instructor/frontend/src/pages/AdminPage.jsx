@@ -1,10 +1,11 @@
+// our custom hooks
+import { useResources } from '../hooks/useResources';
+
+// our components
 import Card from '../components/ui/Card';
 
 export default function AdminPage() {
-
-  const resources = [
-    {id: 1, title: "example resource", category: "placeholder"}
-  ]
+  const { resources, isLoading, error, refetch } = useResources();
 
   return (
     <>
@@ -18,6 +19,14 @@ export default function AdminPage() {
       <section className="md:col-span-3 lg:col-span-3">
         <Card title="Current Resources">
           <div className="card-body">
+            {isLoading && <p>Loading resources...</p>}
+
+            {error && (
+              <div className="alert alert-error">
+                <span>{error.message}</span>
+                <button className="btn btn-sm" onClick={refetch}>Try again</button>
+              </div>
+            )}
             <ul className="space-y-2">
               {resources.map((resource) => (
                 <li key={resource.id} className="rounded border border-gray-200 p-3">
