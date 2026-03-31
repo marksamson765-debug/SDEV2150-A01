@@ -1,5 +1,5 @@
 // react hooks
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // react-router hooks
 import { useParams } from 'react-router';
@@ -25,6 +25,45 @@ export default function AdminPage() {
   const { resources, addResource, isLoading, error, refetch } = useResources();
   
   const { resourceId } = useParams(); // not doing anything with this yet
+
+  useEffect(
+    () => {
+
+      // console.log(resourceId)
+      // console.log(resources)
+
+      // 1. no resourceId -> I'm at /admin/ -> probably creating a new one
+      if (!resourceId) {
+        resetForm();
+      }
+
+      // 2. there is a resourceId -> grab the matching resource & prepop form
+      //      if no matching resource -> do nothing
+      const resource = resources.find((item) => item.id === resourceId);
+      if (!resource) return; // leaving initial state here for demo purposes
+      
+      // console.log(resource)
+      setFormData(resource);
+    },
+    
+    [resourceId, resources] // this is required to get that matching
+                            // -> on initial load, we don't have resources or resourceId
+                            //    because they're derived from other effects (and this is all async
+                            //    so we have no guarantee about the completion order)
+  )
+
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      category: '',
+      summary: '',
+      location: '',
+      hours: '',
+      contact: '',
+      virtual: false,
+      openNow: false,
+    })
+  }
 
   async function handleCreateResource(e) {
     e.preventDefault();
@@ -75,16 +114,7 @@ export default function AdminPage() {
                 <button
                   type="reset"
                   className="rounded border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
-                  onClick={() => setFormData({
-                    title: '',
-                    category: '',
-                    summary: '',
-                    location: '',
-                    hours: '',
-                    contact: '',
-                    virtual: false,
-                    openNow: false,
-                  })}
+                  onClick={resetForm}
                 >
                   Reset
                 </button>
